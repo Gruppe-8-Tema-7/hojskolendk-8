@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import "../styles/main.css";
+import "../styles/cards.css";
 ---
 
 <Layout>
@@ -12,34 +15,51 @@ import Button from "../components/Button.astro";
 
   <Button title="Se rejsekalender" variant="primary" />
   <Button title="Infomøder" variant="secondary" />
-</Layout>
-<Layout>
+
   <h2>Vælg dit eventyr</h2>
   <p>
     HØJSKOLENDK er en dansk højskole for unge i alderen 18-28 år.Vi brænder for
     oplevelser, fællesskabet og det gode eventyr.
   </p>
+  <div class="cards_top">
+    <Card
+      title="Maldiverne, Sri Lanka, Bali, Gili Islands, Japan, Australien"
+      badge="90-dage"
+    />
+    <Card
+      title="Brasilien, Colombia, Costa Rica, Mexico"
+      badge="90-dage"
+      label="2 anbefalede"
+    />
+    <Card
+      title="Australien, New Zealand, Vietnam, Bali, Gili Islands, Lombok"
+      badge="90-dage"
+    />
+  </div>
+  <div class="cards_bottom">
+    <Card
+      title="Hawaii, Australien, Japan, Bali, Gili Islands"
+      badge="90-dage"
+    />
+    <Card title="Maldiverne, Sri Lanka, Bali, Gili Islands" badge="90-dage" />
+  </div>
   <Button title="Se alle rejser" variant="primary" />
-</Layout>
-<Layout>
+
   <h2>Oplevelser for livet & fantastiske eventyr</h2>
   <p>
     HØJSKOLENDK er en dansk højskole for unge i alderen 18-28 år.Vi brænder for
     oplevelser, fællesskabet og det gode eventyr.
   </p>
-</Layout>
-<Layout>
+
   <h2>+3.000 glade elever siden 2010</h2>
   <p>96% af alle elever anbefaler HØJSKOLENDK (2025).</p>
-</Layout>
-<Layout>
+
   <h2>Klar på højskoleeventyr, fælleskab & masser af adventure?</h2>
   <p>
     Her er lidt af alt det, som du får, når du tager på et højskoleophold med
     os.
   </p>
-</Layout>
-<Layout>
+
   <p>ONLINE INFOMØDE</p>
   <h2>Kom til infomøde</h2>
   <p>
