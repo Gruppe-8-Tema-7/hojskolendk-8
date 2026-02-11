@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Om os", href: "/om-os" },
   { label: "Kontakt os", href: "/kontakt" },
 ];
+import Button from "../components/Button.astro";
 ---
 
 <header class="site-header">
@@ -146,6 +147,8 @@ Brug for hjælp?</a>
           ))}
         </ul>
       </nav>
+
+      <Button title="Bestil Ophold" variant="primary" />
 
       <style> 
 
