@@ -1,0 +1,24 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  font-family: poppins, "helvetica neue", sans-serif;
+}
+
+h1 {
+  font-family: "Dela Gothic One", "helvetica neue", sans-serif;
+  font-weight: 400;
+  font-size: 2.625rem;
+}
+
+h3 {
+  font-family: poppins, "helvetica neue", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+p {
+  font-family: poppins, "helvetica neue", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
