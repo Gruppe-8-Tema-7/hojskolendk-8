@@ -1,0 +1,89 @@
+/*************** Reset *********************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/**/
+.skemagrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.skema {
+  display: grid;
+  padding-bottom: 2rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed #f28c28;
+}
+
+.dato {
+  font-weight: 600;
+  text-align: left;
+}
+
+.tid {
+  font-weight: 600;
+  text-align: right;
+}
+
+.venstre {
+  grid-column: 1;
+  text-align: left;
+}
+
+.hojre {
+  grid-column: 2;
+}
+.svgen {
+  width: 70%;
+}
+.historier {
+  display: flex;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  text-align: left;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.afsnit7 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.sidste {
+  grid-column: 1;
+  text-align: left;
+}
+.placeholder {
+  min-height: 100px;
+}
+
+.knapcirkel1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.knap1 {
+  align-self: center;
+  grid-column: 2;
+}
+.cirkel1 {
+  grid-column: 3;
+  justify-self: right;
+}
+.cirkel2 {
+  display: block;
+}
+.cirkel3 {
+  grid-column: 3;
+}

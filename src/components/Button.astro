@@ -1,11 +1,11 @@
 ---
-const {title, variant} = Astro.props;
+const { title, variant } = Astro.props;
 ---
 
 <button class={variant}>{title}</button>
 
 <style>
-button{
+  button {
     padding: 1rem;
     border: none;
     border-radius: 5px;
@@ -13,20 +13,20 @@ button{
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
-}
+  }
 
-.primary{
+  .primary {
     background-color: #ce5501;
     color: white;
-}
+  }
 
-.secondary{
+  .secondary {
     background-color: white;
     color: black;
-}
+  }
 
-.tertiary{
+  .tertiary {
     background-color: black;
     color: white;
-}
+  }
 </style>
