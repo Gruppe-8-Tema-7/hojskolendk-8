@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-/* import Button from "../components/Button.astro"; */
+import Button from "../components/Button.astro";
 ---
 
 <Layout>
@@ -10,8 +10,8 @@ import Layout from "../layouts/Layout.astro";
     brænder for oplevelser, fællesskabet og det gode eventyr.
   </p>
 
-  <!--  <Button title="Se rejsekalender" />
-  <Button title="Infomøder" variant="secondary" /> -->
+  <Button title="Se rejsekalender" variant="primary" />
+  <Button title="Infomøder" variant="secondary" />
 </Layout>
 <Layout>
   <h2>Vælg dit eventyr</h2>
@@ -19,6 +19,7 @@ import Layout from "../layouts/Layout.astro";
     HØJSKOLENDK er en dansk højskole for unge i alderen 18-28 år.Vi brænder for
     oplevelser, fællesskabet og det gode eventyr.
   </p>
+  <Button title="Se alle rejser" variant="primary" />
 </Layout>
 <Layout>
   <h2>Oplevelser for livet & fantastiske eventyr</h2>
@@ -37,4 +38,13 @@ import Layout from "../layouts/Layout.astro";
     Her er lidt af alt det, som du får, når du tager på et højskoleophold med
     os.
   </p>
+</Layout>
+<Layout>
+  <p>ONLINE INFOMØDE</p>
+  <h2>Kom til infomøde</h2>
+  <p>
+    Kig forbi et af vores hyggelige online-infomøder – vi glæder os til at møde
+    dig!
+  </p>
+  <Button title="Tilmeld infomøde" variant="primary" />
 </Layout>
