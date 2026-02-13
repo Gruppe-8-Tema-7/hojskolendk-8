@@ -1,11 +1,37 @@
 ---
+import type { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 
-const { title, badge, large } = Astro.props;
+const { title, badge, large, image, poptext } = Astro.props;
+
 ---
-
-<div class={`card ${large ? "large" : ""}`}>
+<article class={`card ${large ? "large" : ""}`} style=`background-image: url(${image});`>
+  
   <div class="badge">{badge}</div>
-
   <div class="title">{title}</div>
+<div>
+  {poptext && <p class="pop">{poptext}</p>}
+
 </div>
+</article>
+
+<style>
+article{
+  background-size: cover;
+  background-position: center;
+}
+  
+.pop{
+  position: absolute;
+  bottom: 50px; 
+  left: 20px;
+  background: #4886cc;
+  color: white;
+  padding: 0.3rem;
+  border-radius: 5px;
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+</style>

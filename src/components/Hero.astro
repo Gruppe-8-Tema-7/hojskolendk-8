@@ -1,0 +1,42 @@
+---
+import Button from "../components/Button.astro";
+import "../styles/main.css";
+import "../styles/pages.css";
+---
+
+ <article class="afsnit1">
+      <h1>Dit højskoleeventyr starter her</h1>
+      <p>
+        HØJSKOLENDK er en dansk højskole for unge i alderen <b>18-26 år</b>.Vi
+        brænder for oplevelser, fællesskabet og det gode eventyr.
+      </p>
+
+      <Button title="Se rejsekalender" variant="primary" />
+      <Button title="Infomøder" variant="secondary" />
+    </article>
+
+    <style>
+        article{
+            background-image: url(img/hero2.webp);
+            height: calc(100vh - 9rem);
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+
+        }
+
+        h1{
+            width: 800px;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 8rem;
+        }
+
+        p{
+            width: 600px;
+            margin: 0 auto;
+
+        }
+    </style>
+
