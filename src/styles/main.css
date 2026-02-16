@@ -31,6 +31,10 @@ body {
   margin: 0 auto;
 }
 
+.card2 {
+  background-position: bottom;
+}
+
 h1,
 h2,
 h3 {
