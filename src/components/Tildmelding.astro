@@ -29,7 +29,8 @@ const stays = [
   {meetings.map((meeting, i) => (
     <div class="meeting">
       <div class="left">
-        <span class="icon">📅</span>
+       <span class="icon">🗓️</span>
+
         <span class="date">{meeting.date}</span>
       </div>
 
@@ -231,6 +232,8 @@ const stays = [
     align-items: center;
     padding: 22px 0;
     border-bottom: 2px dashed #e56a00;
+    gap: 32px;
+
   }
 
   .left {
@@ -328,11 +331,24 @@ const stays = [
     gap: 20px;
   }
 
-  .checkbox {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
+ .checkbox {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 14px;
+  align-items: start;
+  max-width: 720px;   /* gør teksten mere læsbar */
+  text-align: left;
+}
+
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+}
+
+.checkbox span {
+  line-height: 1.5;
+}
 
   .required {
     color: red;
