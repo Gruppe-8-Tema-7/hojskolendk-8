@@ -4,11 +4,28 @@ const meetings = [
   { date: "17 Marts 2026" },
   { date: "14 April 2026" },
   { date: "05 Maj 2026" },
-  { date: "09 Juni 2026" }
+  { date: "09 Juni 2026" },
+];
+
+const stays = [
+  "Maldiverne, Sri Lanka, Bali, Gili Islands, Japan og Australien",
+  "Costa Rica, Mexico og Colombia",
+  "Australien, New Zealand, Vietnam, Bali, Gili Islands & Lombok",
+  "Indien, Nepal, Thailand, Vietnam og Sri Lanka",
+  "Hawaii, Australien, Japan, Bali og Gili Islands",
+  "Maldiverne, Sri Lanka, Bali og Gili Islands",
+  "Brasilien, Bolivia, Colombia, Ecuador, Peru & Argentina",
+  "Australien, Japan, Bali og Gili Islands",
+  "Brasilien, Colombia, Costa Rica & Mexico",
+  "Bali, Lombok og Gili - Sommerhøjskole",
+  "Sydkorea & Japan - Sommerhøjskole",
+  "Japan - Sommerhøjskole",
+  "Brasilien, Equador & Amazonas - Sommerhøjskole",
+  "Brasilien, Argentina, Peru, Equador & Galapagos - Sommerhøjskole",
 ];
 ---
-<section class="infomoede">
 
+<section class="infomoede">
   {meetings.map((meeting, i) => (
     <div class="meeting">
       <div class="left">
@@ -19,9 +36,7 @@ const meetings = [
       <div class="time">Kl. 18.30 – 20.00</div>
       <div class="type">Online</div>
 
-      <button 
-        class="cta" 
-        data-modal={`modal-${i}`}>
+      <button class="cta" data-modal={`modal-${i}`} type="button">
         Tilmeld
       </button>
     </div>
@@ -30,7 +45,6 @@ const meetings = [
   {/* Modal */}
   <div class="modal-overlay" id="modal">
     <div class="modal">
-
       <div class="modal-header">
         <div class="meeting-top">
           <span class="icon">📅</span>
@@ -39,14 +53,33 @@ const meetings = [
           <span class="type">Online</span>
         </div>
 
-        <button class="close">Luk</button>
+        <button class="close" type="button">Luk</button>
       </div>
 
       <form class="form">
-        <label>
-          Hvilke ophold er du interesseret i?
-          <select></select>
-        </label>
+        {/* Dropdown med ophold (checkboxes) */}
+        <div class="stay">
+          <span class="stay-label">Hvilke ophold er du interesseret i?</span>
+
+          <button class="stay-trigger" type="button" aria-expanded="false">
+            <span class="stay-value" data-placeholder="Vælg ophold">Vælg ophold</span>
+            <span class="stay-chev" aria-hidden="true">▾</span>
+          </button>
+
+          <div class="stay-panel" hidden>
+            <ul class="stay-list">
+              {stays.map((title) => (
+                <li class="stay-item">
+                  <label class="stay-check">
+                    <input type="checkbox" name="stays" value={title} />
+                    <span class="box" aria-hidden="true"></span>
+                    <span class="text">{title}</span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
         <div class="row">
           <label>
@@ -81,27 +114,26 @@ const meetings = [
         <div class="checkbox">
           <input type="checkbox" required />
           <span>
-            Jeg har læst jeres <b>privatlivspolitik</b> og 
+            Jeg har læst jeres <b>privatlivspolitik</b> og
             <b>generelle bestemmelser</b> og er indforstået med begge.
             <span class="required">*</span>
           </span>
         </div>
 
-        <button class="submit">Send</button>
+        <button class="submit" type="submit">Send</button>
       </form>
-
     </div>
   </div>
-
 </section>
 
 <script>
+  // ----- Modal -----
   const overlay = document.getElementById("modal");
   const modalDate = document.getElementById("modal-date");
   const closeBtn = document.querySelector(".close");
 
   if (overlay && modalDate) {
-    document.querySelectorAll(".cta").forEach(btn => {
+    document.querySelectorAll(".cta").forEach((btn) => {
       btn.addEventListener("click", () => {
         const meeting = btn.closest(".meeting");
         const dateEl = meeting?.querySelector(".date");
@@ -126,132 +158,290 @@ const meetings = [
       }
     });
   }
+
+  // ----- Ophold dropdown -----
+  const stay = document.querySelector(".stay") as HTMLElement | null;
+  const trigger = stay?.querySelector(".stay-trigger") as HTMLElement | null;
+  const panel = stay?.querySelector(".stay-panel") as HTMLElement | null;
+  const valueEl = stay?.querySelector(".stay-value") as HTMLElement | null;
+  const checks = stay?.querySelectorAll('input[type="checkbox"][name="stays"]') as NodeListOf<HTMLInputElement> | undefined;
+
+  function openStay() {
+    trigger?.setAttribute("aria-expanded", "true");
+    if (panel) panel.hidden = false;
+  }
+
+  function closeStay() {
+    trigger?.setAttribute("aria-expanded", "false");
+    if (panel) panel.hidden = true;
+  }
+
+  function updateStayValue() {
+    if (!checks || !valueEl) return;
+
+    const selected = Array.from(checks)
+      .filter((c) => c.checked)
+      .map((c) => c.value);
+
+    if (selected.length === 0) {
+      valueEl.textContent = valueEl.dataset.placeholder || "Vælg ophold";
+      return;
+    }
+
+    if (selected.length === 1) {
+      valueEl.textContent = selected[0];
+      return;
+    }
+
+    valueEl.textContent = `${selected[0]} +${selected.length - 1}`;
+  }
+
+  trigger?.addEventListener("click", (e) => {
+    e.preventDefault();
+    const isOpen = trigger.getAttribute("aria-expanded") === "true";
+    isOpen ? closeStay() : openStay();
+  });
+
+  checks?.forEach((c) => c.addEventListener("change", updateStayValue));
+
+  document.addEventListener("click", (e) => {
+    if (!stay) return;
+    if (e.target instanceof Node && !stay.contains(e.target)) closeStay();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeStay();
+  });
+
+  updateStayValue();
 </script>
 
 <style>
-.infomoede {
-  font-family: system-ui, sans-serif;
-}
+  .infomoede {
+    font-family: system-ui, sans-serif;
+  }
 
-.meeting {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  align-items: center;
-  padding: 22px 0;
-  border-bottom: 2px dashed #e56a00;
-}
+  .meeting {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    padding: 22px 0;
+    border-bottom: 2px dashed #e56a00;
+  }
 
-.left {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
+  .left {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
 
-.date {
-  font-weight: 600;
-  font-size: 18px;
-}
+  .date {
+    font-weight: 600;
+    font-size: 18px;
+  }
 
-.time,
-.type {
-  font-weight: 600;
-}
+  .time,
+  .type {
+    font-weight: 600;
+  }
 
-.cta {
-  background: #d65f00;
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
+  .cta {
+    background: #d65f00;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
-/* Modal */
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
 
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-}
+  .modal-overlay.active {
+    display: flex;
+  }
 
-.modal-overlay.active {
-  display: flex;
-}
+  .modal {
+    background: #f5f2ef;
+    width: 100%;
+    max-width: 900px;
+    padding: 40px;
+    border-radius: 10px;
+  }
 
-.modal {
-  background: #f5f2ef;
-  width: 100%;
-  max-width: 900px;
-  padding: 40px;
-  border-radius: 10px;
-}
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .meeting-top {
+    display: flex;
+    gap: 30px;
+    font-weight: 600;
+    flex-wrap: wrap;
+    align-items: center;
+  }
 
-.meeting-top {
-  display: flex;
-  gap: 30px;
-  font-weight: 600;
-}
+  .close {
+    background: #d65f00;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 
-.close {
-  background: #d65f00;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-}
+  .form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 
-.form {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
+  input,
+  select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 2px solid #d8d2cc;
+    background: #e9e4df;
+    margin-top: 6px;
+  }
 
-input, select {
-  width: 100%;
-  padding: 14px;
-  border-radius: 8px;
-  border: 2px solid #d8d2cc;
-  background: #e9e4df;
-  margin-top: 6px;
-}
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
 
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
+  .checkbox {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
 
-.checkbox {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
+  .required {
+    color: red;
+  }
 
-.required {
-  color: red;
-}
+  .submit {
+    width: fit-content;
+    background: #04032c;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
-.submit {
-  width: fit-content;
-  background: #04032c;
-  color: white;
-  padding: 14px 28px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
+  /* ---- Ophold dropdown ---- */
+  .stay {
+    display: block;
+  }
+
+  .stay-label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .stay-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 2px solid #d8d2cc;
+    background: #e9e4df;
+
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+  }
+
+  .stay-value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 12px;
+  }
+
+  .stay-chev {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .stay-panel {
+    margin-top: 10px;
+    background: #f5f2ef;
+    border-radius: 8px;
+    padding: 6px 0;
+    max-height: 320px;
+    overflow: auto;
+  }
+
+  .stay-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .stay-item {
+    padding: 10px 14px;
+  }
+
+  .stay-check {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 12px;
+    align-items: start;
+    cursor: pointer;
+  }
+
+  /* skjul native checkbox, brug vores box */
+  .stay-check input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .stay-check .box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d8d2cc;
+    border-radius: 4px;
+    background: transparent;
+    margin-top: 2px;
+  }
+
+  .stay-check input:checked + .box {
+    background: #04032c;
+    border-color: #04032c;
+  }
+
+  .stay-check .text {
+    line-height: 1.35;
+  }
+
+  @media (max-width: 720px) {
+    .meeting {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
