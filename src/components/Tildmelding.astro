@@ -1,0 +1,257 @@
+---
+const meetings = [
+  { date: "03 Februar 2026" },
+  { date: "17 Marts 2026" },
+  { date: "14 April 2026" },
+  { date: "05 Maj 2026" },
+  { date: "09 Juni 2026" }
+];
+---
+<section class="infomoede">
+
+  {meetings.map((meeting, i) => (
+    <div class="meeting">
+      <div class="left">
+        <span class="icon">📅</span>
+        <span class="date">{meeting.date}</span>
+      </div>
+
+      <div class="time">Kl. 18.30 – 20.00</div>
+      <div class="type">Online</div>
+
+      <button 
+        class="cta" 
+        data-modal={`modal-${i}`}>
+        Tilmeld
+      </button>
+    </div>
+  ))}
+
+  {/* Modal */}
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+
+      <div class="modal-header">
+        <div class="meeting-top">
+          <span class="icon">📅</span>
+          <span class="date" id="modal-date"></span>
+          <span class="time">Kl. 18.30 – 20.00</span>
+          <span class="type">Online</span>
+        </div>
+
+        <button class="close">Luk</button>
+      </div>
+
+      <form class="form">
+        <label>
+          Hvilke ophold er du interesseret i?
+          <select></select>
+        </label>
+
+        <div class="row">
+          <label>
+            Fornavn <span class="required">*</span>
+            <input type="text" />
+          </label>
+
+          <label>
+            Efternavn
+            <input type="text" />
+          </label>
+        </div>
+
+        <label>
+          E-mail <span class="required">*</span>
+          <input type="email" />
+        </label>
+
+        <div class="checkbox">
+          <input type="checkbox" />
+          <span>
+            Ved tilmelding giver du os tilladelse til at kontakte dig m.
+            påmindelser og opfølgning.
+          </span>
+        </div>
+
+        <p class="terms">
+          For at kunne tilmelde dig er vi nødt til at gemme og behandle dine
+          personlige oplysninger...
+        </p>
+
+        <div class="checkbox">
+          <input type="checkbox" required />
+          <span>
+            Jeg har læst jeres <b>privatlivspolitik</b> og 
+            <b>generelle bestemmelser</b> og er indforstået med begge.
+            <span class="required">*</span>
+          </span>
+        </div>
+
+        <button class="submit">Send</button>
+      </form>
+
+    </div>
+  </div>
+
+</section>
+
+<script>
+  const overlay = document.getElementById("modal");
+  const modalDate = document.getElementById("modal-date");
+  const closeBtn = document.querySelector(".close");
+
+  if (overlay && modalDate) {
+    document.querySelectorAll(".cta").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const meeting = btn.closest(".meeting");
+        const dateEl = meeting?.querySelector(".date");
+        if (dateEl) {
+          modalDate.textContent = dateEl.textContent ?? "";
+        }
+        overlay.classList.add("active");
+      });
+    });
+  }
+
+  if (overlay && closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      overlay.classList.remove("active");
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove("active");
+      }
+    });
+  }
+</script>
+
+<style>
+.infomoede {
+  font-family: system-ui, sans-serif;
+}
+
+.meeting {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 2px dashed #e56a00;
+}
+
+.left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.date {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.time,
+.type {
+  font-weight: 600;
+}
+
+.cta {
+  background: #d65f00;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Modal */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  background: #f5f2ef;
+  width: 100%;
+  max-width: 900px;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meeting-top {
+  display: flex;
+  gap: 30px;
+  font-weight: 600;
+}
+
+.close {
+  background: #d65f00;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 2px solid #d8d2cc;
+  background: #e9e4df;
+  margin-top: 6px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.checkbox {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.required {
+  color: red;
+}
+
+.submit {
+  width: fit-content;
+  background: #04032c;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+</style>
