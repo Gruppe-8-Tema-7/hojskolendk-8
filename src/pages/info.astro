@@ -13,6 +13,31 @@ import "../styles/pages.css";
 <Layout>
     <main>
         <Hero/>
-        <Tildmelding/>
+                <section class="grid wrapper">
+                        <div class="left">
+                            <h2>Højskole i udlandet</h2>
+                            <p>På infomødet fortæller vi, hvem HØJSKOLENDK er, og hvordan et højskoleophold i udlandet vil se ud. </p>
+                            <p>Vi fortæller om hverdagen på højskole, om adventure, aktiviteter og om hvordan vi undervisningen fungerer. Glem alt om klasseværelset!</p>
+                            <p>Du bliver også klogere på alt det praktiske: økonomi, lommepenge, pakkeliste, friuger, afrejsemødet og alt det, du skal vide, før du beslutter dig.</p>
+                            <p>Vi slutter af med Rejsefeber Café, hvor du kan møde tidligere elever, rejseledere og ejerne, stille alle dine spørgsmål og mærke stemningen.</p>
+                            <p>Vi glæder os til at møde dig!</p>
+                        </div>
+                        <Tildmelding/>
+                </section>
     </main>
 </Layout>
+
+<style>
+    .grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 6rem;
+        margin: 3rem auto;
+    }
+    .left{
+        text-align: left;
+    }
+    .info_pic{
+        padding-top: 1rem;
+    }
+</style>
