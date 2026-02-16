@@ -1,11 +1,19 @@
 ---
-const { title, variant } = Astro.props;
+const { title, variant, href } = Astro.props;
 ---
 
-<button class={variant}>{title}</button>
+{href ? (
+  <a href={href} class={variant}>
+    {title}
+  </a>
+) : (
+  <button class={variant}>
+    {title}
+  </button>
+)}
 
 <style>
-  button {
+  button, a {
     padding: 1rem;
     border: none;
     border-radius: 5px;
@@ -13,11 +21,12 @@ const { title, variant } = Astro.props;
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
+    text-decoration: none;
   }
 
   .primary {
     background-color: #ce5501;
-    color: white;
+    color: white; 
   }
 
   .secondary {
