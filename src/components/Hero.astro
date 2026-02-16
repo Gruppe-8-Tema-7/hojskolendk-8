@@ -2,41 +2,45 @@
 import Button from "../components/Button.astro";
 import "../styles/main.css";
 import "../styles/pages.css";
+
+const {title, text, button_page, background} = Astro.props;
 ---
 
- <article class="afsnit1">
-      <h1>Dit højskoleeventyr starter her</h1>
+ <article class="afsnit1" style={`background-image: url(${background})`};>
+    {button_page ? (
+       <h1>{title}</h1>
       <p>
-        HØJSKOLENDK er en dansk højskole for unge i alderen <b>18-26 år</b>.Vi
-        brænder for oplevelser, fællesskabet og det gode eventyr.
+        {text}
       </p>
 
       <Button title="Se rejsekalender" variant="primary" />
-      <Button title="Infomøder" variant="secondary" href="/info" />
+      <Button title="Infomøder" variant="secondary" href="/info" />  
+    ):
+       <h1>{title}</h1>
+      <p>
+        {text}
+      </p>
+    }
+
     </article>
 
     <style>
         article{
-            background-image: url(img/hero2.webp);
             height: calc(100vh - 9rem);
             background-position: bottom;
             background-repeat: no-repeat;
             background-size: cover;
             color: white;
-
         }
-
         h1{
             width: 800px;
             text-align: center;
             margin: 0 auto;
             padding-top: 8rem;
         }
-
         p{
-            width: 600px;
+            width: 500px;
             margin: 0 auto;
-
         }
     </style>
 
