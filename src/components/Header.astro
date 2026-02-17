@@ -1,4 +1,6 @@
 ---
+const { links } = Astro.props;
+
 const navLinks = [
   { label: "Rejsekalender", href: "/rejsekalender" },
   { label: "Højskoleophold", href: "/hojskoleophold" },
@@ -110,7 +112,7 @@ Brug for hjælp?</a>
     </div>
   </div>
 
-  <!-- Main nav -->
+ 
   <div class="mainbar">
     <div class="container mainbar__inner">
       <a class="logo" href="/" aria-label="Højskolendk">
@@ -236,7 +238,6 @@ Brug for hjælp?</a>
     gap: 24px;
     padding: 18px 0;
     background: white;
-    margin-top: 20px;
   }
 
   .logo {
@@ -269,4 +270,58 @@ Brug for hjælp?</a>
   }
 
   .nav__link:hover { opacity: 0.7; }
+
+  @media (max-width: 900px) {
+    .topbar__inner {
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 8px 0;
+    }
+
+    .topbar__right {
+      display: none;
+    }
+
+    .topbar__item {
+      font-size: 12px;
+      white-space: normal;
+    }
+
+    .topbar__help {
+      position: static;
+      transform: none;
+      margin-left: auto;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+
+    .mainbar__inner {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      margin-top: 10px;
+      justify-items: center;
+    }
+
+    .nav__list {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav__link {
+      font-size: 16px;
+    }
+
+    .logo svg {
+      width: 150px;
+      height: auto;
+    }
+
+    .mainbar :global(.primary) {
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+    }
+  }
       </style>
