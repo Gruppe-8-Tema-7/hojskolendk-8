@@ -37,7 +37,6 @@ const { img } = Astro.props;
 
 <style>
   article {
-    /* border-top: solid black 1px; */
     padding-top: 3rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -56,4 +55,16 @@ const { img } = Astro.props;
     margin: 0 auto;
     padding-top: 3rem;
   }
+  @media (max-width: 425px) {
+    .grid {
+        display: block;
+        padding-top: 1rem; 
+    }
+    article{
+        padding: 1rem;
+    }
+    section{
+        padding-bottom: 2rem;
+    }
+}
 </style>
