@@ -33,14 +33,24 @@ const {title, text, button_page, background} = Astro.props;
             color: white;
         }
         h1{
-            width: 800px;
+            max-width: 800px;
             text-align: center;
             margin: 0 auto;
             padding-top: 8rem;
         }
         p{
-            width: 500px;
+            max-width: 500px;
             margin: 0 auto;
         }
+        @media (max-width: 425px) {
+            h1{
+                max-width: 250px;
+                font-size: 2.5rem;
+            }
+            p{
+                max-width: 200px;
+                font-size: 1rem;
+            }
+        }  
     </style>
 
