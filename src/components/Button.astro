@@ -27,15 +27,31 @@ const { title, variant, href } = Astro.props;
   .primary {
     background-color: #ce5501;
     color: white; 
+    transition: all 0.3s ease;
   }
 
   .secondary {
     background-color: white;
     color: black;
+    transition: all 0.3s ease;
   }
 
   .tertiary {
     background-color: black;
     color: white;
+    transition: all 0.3s ease;
+  }
+
+  .primary:hover{
+    background-color: #EBBB99;
+    color: black;
+  }
+    .secondary:hover{
+    background-color: black;
+    color: white;
+  }
+    .tertiary:hover{
+    background-color: white;
+    color: black;
   }
 </style>
