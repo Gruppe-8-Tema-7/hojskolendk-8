@@ -22,7 +22,7 @@ img {
 
 .row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: max-content 1fr auto;
   align-items: center;
   padding: 12px 0;
   border-bottom: 1px dashed #f28c28;
