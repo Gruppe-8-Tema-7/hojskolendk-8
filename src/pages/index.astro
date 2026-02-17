@@ -6,9 +6,14 @@ import Hero from "../components/Hero.astro";
 import "../styles/main.css";
 import "../styles/cards.css";
 import "../styles/pages.css";
+import CardTilt from "../components/Card_tilt.astro";
 
 import { Image } from "astro:assets";
-import Kalendersvg from "../svg/kalender.svg";
+import Kalendersvg from "../imgs/kalender.svg";
+import Drinks from "../imgs/drinks.webp";
+import Stairs from "../imgs/stairs.webp";
+import Waterfall from "../imgs/waterfall.webp";
+import Shadow from "../imgs/shadow.webp";
 ---
 
 <Layout>
@@ -123,6 +128,11 @@ import Kalendersvg from "../svg/kalender.svg";
           HØJSKOLENDK er en dansk højskole for unge i alderen 18-28 år.Vi
           brænder for oplevelser, fællesskabet og det gode eventyr.
         </p>
+        <div class="b_b_b">
+          <Image src={Drinks} alt="" />
+          <Image src={Stairs} alt="" />
+          <Image src={Waterfall} alt="" />
+        </div>
         <div class="cirkel2wrap">
           <svg
             class="cirkel2"
@@ -250,6 +260,7 @@ import Kalendersvg from "../svg/kalender.svg";
       <div class="afsnit4">
         <h2>+3.000 glade elever siden 2010</h2>
         <p>96% af alle elever anbefaler HØJSKOLENDK (2025).</p>
+        <span class="sh_b"> <Image src={Shadow} alt="" /></span>
       </div>
       <div class="afsnit5">
         <h2>Klar på højskoleeventyr, fælleskab & masser af adventure?</h2>
@@ -257,6 +268,12 @@ import Kalendersvg from "../svg/kalender.svg";
           Her er lidt af alt det, som du får, når du tager på et højskoleophold
           med os.
         </p>
+        <span class="tiltet">
+          <CardTilt variant="right_tilt" />
+          <CardTilt variant="left_tilt" />
+          <CardTilt variant="right_tilt" />
+          <CardTilt variant="left_tilt" />
+        </span>
         <div class="skemagrid">
           <div class="venstre">
             <p>ONLINE INFOMØDE</p>

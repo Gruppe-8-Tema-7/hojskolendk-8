@@ -87,3 +87,22 @@ img {
 .cirkel3 {
   grid-column: 3;
 }
+.b_b_b {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.b_b_b img {
+  padding: 1rem;
+  border-radius: 25px;
+}
+.sh_b img {
+  padding: 1rem;
+  border-radius: 25px;
+  margin-bottom: 3rem;
+}
+.tiltet {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: auto;
+  width: 100%;
+}
