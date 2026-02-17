@@ -23,32 +23,38 @@ const stays = [
   "Brasilien, Equador & Amazonas - Sommerhøjskole",
   "Brasilien, Argentina, Peru, Equador & Galapagos - Sommerhøjskole",
 ];
+import { Image } from "astro:assets";
+import Kalendersvg from "../svg/kalender.svg";
 ---
 
 <section class="infomoede">
-  {meetings.map((meeting, i) => (
-    <div class="meeting">
-      <div class="left">
-       <span class="icon">🗓️</span>
+  {
+    meetings.map((meeting, i) => (
+      <div class="meeting">
+        <div class="left">
+          <span class="icon">
+            <Image src={Kalendersvg} alt="" />
+          </span>
 
-        <span class="date">{meeting.date}</span>
+          <span class="date">{meeting.date}</span>
+        </div>
+
+        <div class="time">Kl. 18.30 – 20.00</div>
+        <div class="type">Online</div>
+
+        <button class="cta" data-modal={`modal-${i}`} type="button">
+          Tilmeld
+        </button>
       </div>
-
-      <div class="time">Kl. 18.30 – 20.00</div>
-      <div class="type">Online</div>
-
-      <button class="cta" data-modal={`modal-${i}`} type="button">
-        Tilmeld
-      </button>
-    </div>
-  ))}
+    ))
+  }
 
   {/* Modal */}
   <div class="modal-overlay" id="modal">
     <div class="modal">
       <div class="modal-header">
         <div class="meeting-top">
-          <span class="icon">📅</span>
+          <span class="icon"><Image src={Kalendersvg} alt="" /></span>
           <span class="date" id="modal-date"></span>
           <span class="time">Kl. 18.30 – 20.00</span>
           <span class="type">Online</span>
@@ -63,21 +69,25 @@ const stays = [
           <span class="stay-label">Hvilke ophold er du interesseret i?</span>
 
           <button class="stay-trigger" type="button" aria-expanded="false">
-            <span class="stay-value" data-placeholder="Vælg ophold">Vælg ophold</span>
+            <span class="stay-value" data-placeholder="Vælg ophold"
+              >Vælg ophold</span
+            >
             <span class="stay-chev" aria-hidden="true">▾</span>
           </button>
 
           <div class="stay-panel" hidden>
             <ul class="stay-list">
-              {stays.map((title) => (
-                <li class="stay-item">
-                  <label class="stay-check">
-                    <input type="checkbox" name="stays" value={title} />
-                    <span class="box" aria-hidden="true"></span>
-                    <span class="text">{title}</span>
-                  </label>
-                </li>
-              ))}
+              {
+                stays.map((title) => (
+                  <li class="stay-item">
+                    <label class="stay-check">
+                      <input type="checkbox" name="stays" value={title} />
+                      <span class="box" aria-hidden="true" />
+                      <span class="text">{title}</span>
+                    </label>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>
@@ -109,7 +119,9 @@ const stays = [
 
         <p class="terms">
           For at kunne tilmelde dig er vi nødt til at gemme og behandle dine
-          personlige oplysninger...
+          personlige oplysninger. Hvis du samtykker til, at vi må gemme dine
+          personlige oplysninger til dette formål, skal du sætte kryds i
+          afkrydsningsfeltet nedenfor.
         </p>
 
         <div class="checkbox">
@@ -165,7 +177,9 @@ const stays = [
   const trigger = stay?.querySelector(".stay-trigger") as HTMLElement | null;
   const panel = stay?.querySelector(".stay-panel") as HTMLElement | null;
   const valueEl = stay?.querySelector(".stay-value") as HTMLElement | null;
-  const checks = stay?.querySelectorAll('input[type="checkbox"][name="stays"]') as NodeListOf<HTMLInputElement> | undefined;
+  const checks = stay?.querySelectorAll(
+    'input[type="checkbox"][name="stays"]',
+  ) as NodeListOf<HTMLInputElement> | undefined;
 
   function openStay() {
     trigger?.setAttribute("aria-expanded", "true");
@@ -218,13 +232,16 @@ const stays = [
 </script>
 
 <style>
+  .terms {
+    text-align: left;
+  }
   .infomoede {
     font-family: system-ui, sans-serif;
   }
-  
-.stay-check {
-  text-align: left;
-}
+
+  .stay-check {
+    text-align: left;
+  }
 
   .meeting {
     display: grid;
@@ -233,7 +250,6 @@ const stays = [
     padding: 22px 0;
     border-bottom: 2px dashed #e56a00;
     gap: 32px;
-
   }
 
   .left {
@@ -331,24 +347,24 @@ const stays = [
     gap: 20px;
   }
 
- .checkbox {
-  display: grid;
-  grid-template-columns: 20px 1fr;
-  gap: 14px;
-  align-items: start;
-  max-width: 720px;   /* gør teksten mere læsbar */
-  text-align: left;
-}
+  .checkbox {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 14px;
+    align-items: start;
+    max-width: 720px; /* gør teksten mere læsbar */
+    text-align: left;
+  }
 
-.checkbox input {
-  width: 18px;
-  height: 18px;
-  margin-top: 4px;
-}
+  .checkbox input {
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+  }
 
-.checkbox span {
-  line-height: 1.5;
-}
+  .checkbox span {
+    line-height: 1.5;
+  }
 
   .required {
     color: red;

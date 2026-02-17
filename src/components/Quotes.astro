@@ -1,48 +1,59 @@
 ---
-
-const {img}=Astro.props;
+const { img } = Astro.props;
 ---
 
 <article>
-    <h2>Historier fra elever</h2>
-    <p class="subtext">HØJSKOLENDK er en dansk højskole for unge i alderen 18-28 år. Vi brænder for oplevelser, fællesskabet og det gode eventyr.</p>
-    <div class="grid">
-        <section>
-            <img src="/img/quote1.webp" alt="billede af sammenhold"/>
-            <p>"Man udvikler sig gennem de mange forskellige oplevelser og igennem den fantastiske undervisning man får undervejs."</p>
-        </section>
+  <h2>Historier fra elever</h2>
+  <p class="subtext">
+    HØJSKOLENDK er en dansk højskole for unge i alderen 18-28 år. Vi brænder for
+    oplevelser, fællesskabet og det gode eventyr.
+  </p>
+  <div class="grid">
+    <section>
+      <img src="/img/quote1.webp" alt="billede af sammenhold" />
+      <p>
+        "Man udvikler sig gennem de mange forskellige oplevelser og igennem den
+        fantastiske undervisning man får undervejs."
+      </p>
+    </section>
 
-        <section>
-            <img src="/img/quote2.webp" alt="billede af sammenhold" />
-            <p>"At rejse med HøjskolenDK var og er, uden tvivl mit livs bedste beslutning."</p>
-        </section>
+    <section>
+      <img src="/img/quote2.webp" alt="billede af sammenhold" />
+      <p>
+        "At rejse med HøjskolenDK var og er, uden tvivl mit livs bedste
+        beslutning."
+      </p>
+    </section>
 
-        <section>
-            <img src="/img/quote3.webp" alt="billede af sammenhold" />
-            <p>"Det var fedt at opleve så mange forskellige kulturer, og møde så mange nye mennesker, både på højskolen men også på rejsen."</p>
-        </section>
-    </div>
+    <section>
+      <img src="/img/quote3.webp" alt="billede af sammenhold" />
+      <p>
+        "Det var fedt at opleve så mange forskellige kulturer, og møde så mange
+        nye mennesker, både på højskolen men også på rejsen."
+      </p>
+    </section>
+  </div>
 </article>
 
 <style>
-    article{
-        border-top: solid black 1px;
-        padding-top: 3rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .subtext{
-        max-width: 500px;
-        margin: 0 auto;
-        padding-top: 0;
-    }
-    .grid{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 3rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding-top: 3rem;
-    }
+  article {
+    /* border-top: solid black 1px; */
+    padding-top: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .subtext {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 3rem;
+  }
 </style>
